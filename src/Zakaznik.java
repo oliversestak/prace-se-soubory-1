@@ -1,10 +1,10 @@
 import java.time.LocalDate;
 
 public class Zakaznik {
-    String jmeno;
-    LocalDate datumNarozeni;
-    String mesto;
-    int pocetProdeju;
+    private String jmeno;
+    private LocalDate datumNarozeni;
+    private String mesto;
+    private int pocetProdeju;
 
     public Zakaznik(String jmeno, LocalDate datumNarozeni, String mesto, int pocetProdeju) {
         this.jmeno = jmeno;
@@ -47,6 +47,11 @@ public class Zakaznik {
 
     public void setPocetProdeju(int pocetProdeju) {
         this.pocetProdeju = pocetProdeju;
+    }
+
+
+    public String prevedeniDoSouboru() {
+        return jmeno + ":" + datumNarozeni + ":" + mesto + ":" + pocetProdeju;
     }
 
 
