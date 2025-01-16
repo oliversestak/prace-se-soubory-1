@@ -1,5 +1,10 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,6 +17,22 @@ public class Main {
         evidence.odebraniZakaznika(posledniZakaznik);
 
         evidence.ulozDoSouboru("zakaznici.txt");
+
+
+        try(Scanner scanner = new Scanner(new BufferedReader(new FileReader("zakaznici.txt")))) {
+            while(scanner.hasNextLine()) {
+                String nextline = scanner.nextLine();
+                String[] polozky = nextline.split(":");
+                String jmeno = polozky[0].trim();
+                LocalDate narozeni = LocalDate.parse(polozky[1].trim());
+                String mesto = polozky[2].trim();
+                int pocetProdeju = Integer.parseInt(polozky[3].trim());
+             }
+        } catch (FileNotFoundException ex1) {
+            System.err.println("Soubor nebyl nalezen.");
+        } catch (Exception ex2) {
+            System.err.println("Chyba při čtení souboru.");
+        }
 
     }
 }

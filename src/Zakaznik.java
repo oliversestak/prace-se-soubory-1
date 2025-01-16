@@ -54,6 +54,12 @@ public class Zakaznik {
         return jmeno + ":" + datumNarozeni + ":" + mesto + ":" + pocetProdeju;
     }
 
+    public void zvysPocetProdeju(int kladneCislo) {
+        if(kladneCislo <= 0) {
+            System.err.println("Počet prodejů není kladné číslo.");
+        }
+    }
+
 
     @Override
     public String toString() {
