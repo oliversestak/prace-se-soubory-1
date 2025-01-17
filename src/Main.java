@@ -10,6 +10,7 @@ public class Main {
         evidence.pridaniZakaznika(new Zakaznik("Pavla", LocalDate.of(1999, 7, 14), "Praha", 51));
         evidence.pridaniZakaznika(new Zakaznik("Zdeňka", LocalDate.of(1974, 3, 28), "Praha", 64));
 
+
         Zakaznik posledniZakaznik = evidence.ziskaniPoslednihoZakaznika();
         evidence.odebraniZakaznika(posledniZakaznik);
 
@@ -35,6 +36,8 @@ public class Main {
                 LocalDate narozeni = LocalDate.parse(polozky[1].trim());
                 String mesto = polozky[2].trim();
                 int pocetProdeju = Integer.parseInt(polozky[3].trim());
+                Zakaznik zakaznik = new Zakaznik(jmeno, narozeni, mesto, pocetProdeju);
+                evidence.pridaniZakaznika(zakaznik);
             }
 
 
@@ -44,6 +47,8 @@ public class Main {
         } catch (Exception ex2) {
             System.err.println("Chyba při čtení souboru.");
         }
+
+
 
 
 
