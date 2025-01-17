@@ -1,14 +1,10 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
+
 
 public class Evidence {
-    private List<Zakaznik> seznam;
+    private ArrayList<Zakaznik> seznam;
 
-
-    public Evidence(List<Zakaznik> seznam) {
+    public Evidence(ArrayList<Zakaznik> seznam) {
         this.seznam = seznam;
     }
 
@@ -27,21 +23,19 @@ public class Evidence {
         return null;
     }
 
-    public void ulozDoSouboru(String nazevSouboru) {
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(nazevSouboru))) {
-            for(Zakaznik zakaznik : seznam) {
-                writer.write(zakaznik.prevedeniDoSouboru());
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            System.err.println("Chyba při uložení zákazníka do souboru");
-        }
+    public ArrayList<Zakaznik> getZakaznici() {
+        return seznam;
     }
 
-    @Override
-    public String toString() {
-        return "Evidence{" +
-                "seznam=" + seznam +
-                '}';
+    public ArrayList<Zakaznik> vybraneZaznamy() {
+        ArrayList<Zakaznik> vybraniZakaznici = new ArrayList<>();
+        for(Zakaznik z : seznam) {
+            if(z.getPocetProdeju() > 50) {
+                vybraniZakaznici.add(z);
+            }
+        }
+        return vybraniZakaznici;
     }
+
+
 }

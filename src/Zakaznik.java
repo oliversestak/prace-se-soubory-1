@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Zakaznik {
     private String jmeno;
@@ -12,7 +13,6 @@ public class Zakaznik {
         this.mesto = mesto;
         this.pocetProdeju = pocetProdeju;
     }
-
 
 
 
@@ -56,18 +56,18 @@ public class Zakaznik {
 
     public void zvysPocetProdeju(int kladneCislo) {
         if(kladneCislo <= 0) {
-            System.err.println("Počet prodejů není kladné číslo.");
+            Vyjimka vyjimka = new Vyjimka("Počet prodejů není kladné číslo.");
+            System.err.println(vyjimka);
         }
-    }
 
+        pocetProdeju = pocetProdeju + kladneCislo;
+    }
 
     @Override
     public String toString() {
         return "Zakaznik{" +
-                "jmeno='" + jmeno + '\'' +
-                ", datumNarozeni=" + datumNarozeni +
-                ", mesto='" + mesto + '\'' +
-                ", pocetProdeju=" + pocetProdeju +
+                "pocetProdeju=" + pocetProdeju +
                 '}';
     }
 }
+

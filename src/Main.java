@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,9 +13,20 @@ public class Main {
         Zakaznik posledniZakaznik = evidence.ziskaniPoslednihoZakaznika();
         evidence.odebraniZakaznika(posledniZakaznik);
 
-        evidence.ulozDoSouboru("zakaznici.txt");
+        //zapsani zakazniku do souboru
+        try(PrintWriter out = new PrintWriter(new File("zakaznici.txt"), "windows-1250")) {
+            for(Zakaznik zakaznik : evidence.getZakaznici()) {
+                String zapis = zakaznik.getJmeno() + ":" + zakaznik.getDatumNarozeni() + ":" + zakaznik.getMesto() + ":" + zakaznik.getPocetProdeju();
 
+                out.println(zapis);
+            }
+        } catch (FileNotFoundException ex1) {
+            System.err.println("Soubor nebyl nalezen.");
+        }catch (UnsupportedEncodingException ex2) {
+            System.err.println("Neznámé kódování.");
+        }
 
+        //nacteni zakazniku
         try(Scanner scanner = new Scanner(new BufferedReader(new FileReader("zakaznici.txt")))) {
             while(scanner.hasNextLine()) {
                 String nextline = scanner.nextLine();
@@ -27,12 +35,19 @@ public class Main {
                 LocalDate narozeni = LocalDate.parse(polozky[1].trim());
                 String mesto = polozky[2].trim();
                 int pocetProdeju = Integer.parseInt(polozky[3].trim());
-             }
+            }
+
+
+
         } catch (FileNotFoundException ex1) {
             System.err.println("Soubor nebyl nalezen.");
         } catch (Exception ex2) {
             System.err.println("Chyba při čtení souboru.");
         }
 
+
+
+        //vyfiltrovani zakazniku s prodejem zbozi vetsi nez 50
+        evidence.vybraneZaznamy();
     }
 }
