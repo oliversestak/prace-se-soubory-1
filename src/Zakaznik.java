@@ -15,8 +15,6 @@ public class Zakaznik {
     }
 
 
-
-
     public String getJmeno() {
         return jmeno;
     }
@@ -49,7 +47,7 @@ public class Zakaznik {
         this.pocetProdeju = pocetProdeju;
     }
 
-
+    
     public String prevedeniDoSouboru() {
         return jmeno + ":" + datumNarozeni + ":" + mesto + ":" + pocetProdeju;
     }
@@ -66,7 +64,10 @@ public class Zakaznik {
     @Override
     public String toString() {
         return "Zakaznik{" +
-                "pocetProdeju=" + pocetProdeju +
+                "jmeno='" + jmeno + '\'' +
+                ", datumNarozeni=" + datumNarozeni +
+                ", mesto='" + mesto + '\'' +
+                ", pocetProdeju=" + pocetProdeju +
                 '}';
     }
 }

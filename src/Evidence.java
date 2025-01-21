@@ -16,6 +16,7 @@ public class Evidence {
         seznam.remove(z);
     }
 
+
     public Zakaznik ziskaniPoslednihoZakaznika() {
         if (!seznam.isEmpty()) {
             return seznam.get(seznam.size() - 1);
@@ -37,5 +38,22 @@ public class Evidence {
         return vybraniZakaznici;
     }
 
+    public double prumernyPocetProdeju() {
+        double soucetProdeju = 0;
+        double pocetZakazniku = 0;
+        
+        for(Zakaznik z : seznam) {
+            if("Uherské Hradiště".equals(z.getMesto())) {
+                soucetProdeju += z.getPocetProdeju();
+                pocetZakazniku++;
+            }
+        }
+
+        if(pocetZakazniku > 0) {
+            return soucetProdeju / pocetZakazniku;
+        } else {
+            return 0.0;
+        }
+    }
 
 }

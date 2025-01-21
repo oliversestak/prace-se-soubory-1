@@ -7,9 +7,8 @@ public class Main {
     public static void main(String[] args) {
 
         Evidence evidence = new Evidence(new ArrayList<>());
-        evidence.pridaniZakaznika(new Zakaznik("Pavla", LocalDate.of(1999, 7, 14), "Praha", 51));
-        evidence.pridaniZakaznika(new Zakaznik("Zdeňka", LocalDate.of(1974, 3, 28), "Praha", 64));
-
+        evidence.pridaniZakaznika(new Zakaznik("Pavla", LocalDate.of(1999, 7, 14), "Uherské Hradiště", 51));
+        evidence.pridaniZakaznika(new Zakaznik("Zdeňka", LocalDate.of(1974, 3, 28), "Uherské Hradiště", 64));
 
         Zakaznik posledniZakaznik = evidence.ziskaniPoslednihoZakaznika();
         evidence.odebraniZakaznika(posledniZakaznik);
@@ -53,6 +52,11 @@ public class Main {
 
 
         //vyfiltrovani zakazniku s prodejem zbozi vetsi nez 50
-        evidence.vybraneZaznamy();
+        ArrayList<Zakaznik> vybraniZakaznici = evidence.vybraneZaznamy();
+        System.out.println(vybraniZakaznici);
+
+        //prumerny pocet prodeju zakazniku z Hradiste
+        double prumernyProdejUH = evidence.prumernyPocetProdeju();
+        System.out.println(prumernyProdejUH);
     }
 }
